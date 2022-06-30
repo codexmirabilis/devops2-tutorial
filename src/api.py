@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, request
 from flask_cors import CORS
 import pandas as pd
 import pickle
@@ -31,3 +31,26 @@ def hello_world():
 @app.route("/training_data")
 def training_data():
     return Response(data.to_json(), mimetype='application/json')
+
+
+# Aufgabe 3
+@app.route("/predict", methods=['GET'])
+def predict():
+    zylinder = request.args.get('zylinder')
+    ps = request.args.get('ps')
+    gewicht = request.args.get('gewicht')
+    beschleunigung = request.args.get('beschleunigung')
+    baujahr = request.args.get('baujahr')
+
+    # print(zylinder, ps, gewicht, beschleunigung, baujahr)
+
+    df = pd.DataFrame({'zylinder': [zylinder], 'ps': [ps], 'gewicht': [gewicht],
+                       'beschleunigung': [beschleunigung], 'baujahr': [baujahr]})
+
+    print(df)
+
+    prediction = trained_model.predict(df)
+    # print(prediction)
+
+    return {'mpg': prediction[0]}
+    # return ''

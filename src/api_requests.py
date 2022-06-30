@@ -1,7 +1,10 @@
 import requests
+import json
+import os
 
+key = json.load(open(os.path.join('credentials.json')))
 params = {'q': 'perlach', 'units': 'metric',
-          'appid': '6ceff59efb8a410a9c0731e19f438aec'}
+          'appid': key['appid']}
 headers = {'Content-Type': 'application/json'}
 
 # Aufgabe 1.1 - Längen- und Breitengrad meines Wohnortes
@@ -33,7 +36,7 @@ for item in forecast_list:
 
 hist_params = {'q': 'perlach, Bavaria, DE', 'type': 'hour',
                'start': '1369728000', 'end': '1369728000',
-               'appid': '6ceff59efb8a410a9c0731e19f438aec'}
+               'appid': key['appid']}
 history = requests.get(
     'http://history.openweathermap.org/data/2.5/history/city', params=hist_params)
 
