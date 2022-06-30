@@ -1,4 +1,4 @@
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install --upgrade pip
-pip install -r requirements.txt
+./.venv/Scripts/Activate.ps1
+./.venv/Scripts/python.exe -m pip install --upgrade pip
+./.venv/Scripts/python.exe -m pip install pip install -r requirements.txt
