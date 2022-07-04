@@ -52,5 +52,5 @@ def predict():
     prediction = trained_model.predict(df)
     # print(prediction)
 
-    return {'mpg': prediction[0]}
+    return {'result': prediction[0]}
     # return ''
